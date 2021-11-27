@@ -1,6 +1,11 @@
+// Add inquirer functionality
+// Add access to file storage
+
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// Begin the readme generator and all of the input data
+// Either pass in data and use dotted notation to refer to the variables or pass in all the individual variables that will be used.
 const generateReadme = (data) =>
 `# ${data.title}
 
@@ -39,11 +44,11 @@ ${data.contributions}
 ${data.tests}
 
 ## Questions
-${data.username} -> "https://github.com/${data.username} 
+${data.username} -> https://github.com/${data.username} 
 
 ${data.email} -> For further questions, please feel free to contact me @josshy92@gmail.com`;
 
-
+// Begin prompts for user input
 inquirer
     .prompt([
         {
@@ -93,6 +98,7 @@ inquirer
             name: 'email',
         },
     ])
+    // Then grab the responses and generate a Readme file with all of the saved content.
     .then((response) => {
         console.log(response)
         const readMePageContent = generateReadme(response)
